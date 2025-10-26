@@ -1,0 +1,263 @@
+/* animations.css - Efectos especiales Targaryen-Stark */
+
+/* Lluvia de fuego Targaryen */
+.fire-rain {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.ember {
+    position: absolute;
+    width: 3px;
+    height: 15px;
+    background: linear-gradient(to bottom, transparent, #DC143C, #FF4500);
+    border-radius: 50%;
+    animation: fallDown 6s linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes fallDown {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.7;
+    }
+    90% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Copos de nieve Stark */
+.snow-flakes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.flake {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: linear-gradient(135deg, #87CEEB, #FFFFFF);
+    border-radius: 50%;
+    animation: snowFall 8s linear infinite;
+    opacity: 0.8;
+    filter: blur(0.5px);
+}
+
+@keyframes snowFall {
+    0% {
+        transform: translateY(-100px) translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(100vh) translateX(50px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Efecto de respiración para partículas principales */
+@keyframes particleBreath {
+    0%, 100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* Efecto de chispa para interacciones */
+.spark {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, #FFD700, #DC143C);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1000;
+    filter: blur(0.5px);
+    animation: sparkFloat 1s ease-out forwards;
+}
+
+@keyframes sparkFloat {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--tx, 0), var(--ty, -100px)) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Efectos de recorte mejorados */
+.mask-reveal {
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    animation: maskReveal 1.5s ease-out forwards;
+}
+
+@keyframes maskReveal {
+    to {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+}
+
+/* Efectos de brillo para elementos interactivos */
+.glow-on-hover {
+    position: relative;
+}
+
+.glow-on-hover::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #DC143C, #87CEEB, #D4AF37, #4682B4);
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.glow-on-hover:hover::before {
+    opacity: 1;
+    animation: glowRotate 2s linear infinite;
+}
+
+@keyframes glowRotate {
+    0% {
+        filter: hue-rotate(0deg) blur(5px);
+    }
+    100% {
+        filter: hue-rotate(360deg) blur(5px);
+    }
+}
+
+/* Efectos 3D y profundidad */
+.three-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    pointer-events: none;
+}
+
+/* Animaciones de entrada para secciones */
+.section-entrance {
+    opacity: 0;
+    transform: translateY(50px);
+    animation: sectionEnter 1s ease-out forwards;
+}
+
+@keyframes sectionEnter {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Efecto de pulso para elementos importantes */
+.pulse-gold {
+    animation: pulseGold 2s infinite;
+}
+
+@keyframes pulseGold {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
+    }
+}
+
+.pulse-red {
+    animation: pulseRed 2s infinite;
+}
+
+@keyframes pulseRed {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(220, 20, 60, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(220, 20, 60, 0.8);
+    }
+}
+
+/* Efecto de rotación para íconos */
+.spin-slow {
+    animation: spin 10s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Efecto de flotación */
+.float {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Efecto de texto que aparece */
+.text-reveal {
+    overflow: hidden;
+    position: relative;
+}
+
+.text-reveal::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--dragon-fire);
+    animation: textReveal 2s ease-in-out forwards;
+}
+
+@keyframes textReveal {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(101%);
+    }
+}
